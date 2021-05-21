@@ -1,5 +1,5 @@
 import React, {useCallback} from "react";
-import Counter from "./Counter";
+import Counter from "./components/Count/Counter";
 
 const App = () => {
     const [count1, setCount1] = React.useState(0)
@@ -16,7 +16,6 @@ const App = () => {
     return (
         <>
             <Counter value={count1} onClick={increaseCounter1}>Counter 1</Counter>
-            <Counter value={count2} onClick={increaseCounter2}>Coutner 2</Counter>
         </>
     )
 };
