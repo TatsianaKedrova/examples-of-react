@@ -25,7 +25,7 @@ const Counter: React.FC<CounterPropsType> = ({counter, increment, reset}) => {
                     </div>
                 </div>
                 <div className={s.lowerField}>
-                    
+
                 </div>
             </div>
             <div className={s.rectangularBox}>
