@@ -1,11 +1,46 @@
-import React, {useCallback} from "react";
+import React, { useState } from "react";
 import Counter from "./components/Count/Counter";
 
 const App = () => {
-    const [count1, setCount1] = React.useState(0)
-    const [count2, setCount2] = React.useState(0)
+    const [count, setCount] = useState(0);
 
-    const increaseCounter1 = useCallback(() => {
+    const increment = () => {
+        if(count < 5) {
+            setCount(prev => prev + 1)
+        }
+    }
+
+    const resetFunc = () => {
+        count &&
+        setCount(0)
+    }
+
+
+
+    return (
+        <div>
+            <Counter
+            counter={count}
+            increment={increment}
+            reset={resetFunc}
+            />
+        </div>
+
+    )
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*const increaseCounter1 = useCallback(() => {
         setCount1(count1 => count1 + 1)
     }, []);
 
@@ -17,7 +52,7 @@ const App = () => {
         <>
             <Counter value={count1} onClick={increaseCounter1}>Counter 1</Counter>
         </>
-    )
+    )*/
 };
 
 export default App;

@@ -25,16 +25,49 @@
 }
 
 .upperField {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
     border: 2px solid white;
     border-radius: 10px;
     width: 90%;
-    height: 50%;
+    height: 40%;
 }
 
 .lowerField {
     border: 2px solid white;
     border-radius: 10px;
     width: 90%;
-    height: 20%;
-    margin-top: 20px;
+    height: 40%;
+    margin-top: 30px;
+}
+
+.counterNumber {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 70px;
+}
+
+.counterMax {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: red;
+    font-size: 70px;
+}
+
+.letterStyle {
+    font-size: 25px;
+    font-weight: bold;
+    margin-right: 15px;
+    color: white;
+}
+
+input[type=number] {
+    border: 2px solid #00ffd9;
+    border-radius: 4px;
+    text-align: center;
 }

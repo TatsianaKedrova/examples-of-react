@@ -2,25 +2,44 @@ import React from "react";
 import s from './Counter.module.css';
 import Button from "../Button/Button";
 
-const Counter = (props: any) => {
-    console.log('Render: ', props.children)
+type CounterPropsType = {
+    counter: number
+    increment: () => void
+    reset: () => void
+}
+
+const Counter: React.FC<CounterPropsType> = ({counter, increment, reset}) => {
 
     return (
         <div className={s.container}>
-            {/*<button onClick={props.onClick}>{props.children}: {props.value}</button>*/}
 
             <div className={s.rectangularBox}>
                 <div className={s.upperField}>
+                    <div>
+                        <span className={s.letterStyle}>max value: </span>
+                        <input type="number"/>
+                    </div>
+                    <div>
+                        <span className={s.letterStyle}>start value: </span>
+                        <input type="number"/>
+                    </div>
                 </div>
-                <div className={s.lowerField}></div>
+                <div className={s.lowerField}>
+                    
+                </div>
             </div>
             <div className={s.rectangularBox}>
                 <div className={s.upperField}>
-                    state
+                    <div className={counter < 5? s.counterNumber : s.counterMax}>
+                        {counter}
+                    </div>
+
                 </div>
                 <div className={s.lowerField}>
-                    <Button />
-                    <Button />
+                    <Button increment={increment}
+                            count={counter}
+                            reset={reset}
+                    />
                 </div>
             </div>
 
