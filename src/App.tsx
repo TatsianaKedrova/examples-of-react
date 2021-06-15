@@ -5,9 +5,7 @@ const App = () => {
     const [count, setCount] = useState<number>(0);
 
     const increment = () => {
-        if(count < 5) {
-            setCount(prev => prev + 1)
-        }
+        setCount(prev => prev + 1)
     }
 
     const resetFunc = () => {
@@ -15,8 +13,8 @@ const App = () => {
         setCount(0)
     }
 
-    const setResults = (startValue: number, maxValue:number) => {
-        setCount(count);
+    const setResults = (startValue: number) => {
+        setCount(startValue);
     }
 
     return (

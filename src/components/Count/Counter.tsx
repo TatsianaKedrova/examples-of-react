@@ -6,19 +6,19 @@ type CounterPropsType = {
     counter: number
     increment: () => void
     reset: () => void
-    setResults: (startValue: number, maxValue:number) => void
+    setResults: (startValue: number) => void
 }
 
 const Counter: React.FC<CounterPropsType> = ({counter, increment, reset, setResults}) => {
 
     const [startValue, setStartValue] = useState<number>(0);
-    const [maxValue, setMaxValue] = useState<number>(0);
+    const [maxValue, setMaxValue] = useState<string>('');
 
     const onChangeStartValue = (e: ChangeEvent<HTMLInputElement>) => {
-        setStartValue(+(e.currentTarget.value));
+        setStartValue(+e.currentTarget.value);
     }
     const onChangeMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
-        setMaxValue(+(e.currentTarget.value));
+        setMaxValue(e.currentTarget.value);
     }
 
     const incrementFunc =(e: MouseEvent<HTMLButtonElement>) => {
@@ -28,9 +28,9 @@ const Counter: React.FC<CounterPropsType> = ({counter, increment, reset, setResu
         return reset();
     }
 
-    /*const setResultValues = (e: MouseEvent<HTMLButtonElement>) => {
-        setResults()
-    }*/
+    const setResultValue = (e: MouseEvent<HTMLButtonElement>) => {
+        setResults(startValue)
+    }
 
     return (
         <div className={s.container}>
@@ -39,22 +39,23 @@ const Counter: React.FC<CounterPropsType> = ({counter, increment, reset, setResu
                 <div className={s.upperField}>
                     <div>
                         <span className={s.letterStyle}>max value: </span>
-                        <input type="number" onChange={onChangeStartValue} />
+                        <input type="number" value={maxValue} onChange={onChangeMaxValue} />
                     </div>
                     <div>
                         <span className={s.letterStyle}>start value: </span>
-                        <input type="number" onChange={onChangeMaxValue} value={counter} />
+                        <input type="number" value={startValue} onChange={onChangeStartValue} />
                     </div>
                 </div>
                 <div className={s.lowerField}>
-                    <Button name={"Set"} btnOnClickFunc={incrementFunc} active={true}/>
+                    <Button name={"Set"} btnOnClickFunc={setResultValue} active={true}/>
+                    {/*counter ? false : true*/}
                 </div>
             </div>
             <div className={s.rectangularBox}>
                 <div className={s.upperField}>
                     <div className={counter < 5? s.counterNumber : s.counterMax}>
-                        {/*{counter ? counter :
-                        <p className={s.pStyle}>enter values and press "Set"</p>}*/}
+                        {counter ? counter :
+                        <p className={s.pStyle}>enter values and press "Set"</p>}
                     </div>
 
                 </div>
@@ -68,7 +69,7 @@ const Counter: React.FC<CounterPropsType> = ({counter, increment, reset, setResu
                         <Button
                             name={"Reset"}
                             btnOnClickFunc={resetFunction}
-                            active={false}
+                            active={true }
                         />
                 </div>
             </div>
