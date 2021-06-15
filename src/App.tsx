@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Counter from "./components/Count/Counter";
 
 const App = () => {
-    const [count, setCount] = useState(0);
+    const [count, setCount] = useState<number>(0);
 
     const increment = () => {
         if(count < 5) {
@@ -15,7 +15,9 @@ const App = () => {
         setCount(0)
     }
 
-
+    const setResults = (startValue: number, maxValue:number) => {
+        setCount(count);
+    }
 
     return (
         <div>
@@ -23,6 +25,7 @@ const App = () => {
             counter={count}
             increment={increment}
             reset={resetFunc}
+            setResults={setResults}
             />
         </div>
 

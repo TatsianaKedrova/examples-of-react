@@ -36,6 +36,10 @@
 }
 
 .lowerField {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
     border: 2px solid white;
     border-radius: 10px;
     width: 90%;
@@ -70,4 +74,10 @@ input[type=number] {
     border: 2px solid #00ffd9;
     border-radius: 4px;
     text-align: center;
+}
+
+.pStyle {
+    color: ghostwhite;
+    font-size: 25px;
+    font-style: italic;
 }
