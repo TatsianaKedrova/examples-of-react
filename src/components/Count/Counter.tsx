@@ -1,4 +1,4 @@
-import React, {ChangeEvent, MouseEvent, useState} from "react";
+import React from "react";
 import s from './Counter.module.css';
 import Button from "../Button/Button";
 
@@ -6,54 +6,21 @@ type CounterPropsType = {
     counter: number
     increment: () => void
     reset: () => void
-    setResults: (startValue: number) => void
 }
 
-const Counter: React.FC<CounterPropsType> = ({counter, increment, reset, setResults}) => {
+const Counter: React.FC<CounterPropsType> = ({counter, increment, reset}) => {
 
-    const [startValue, setStartValue] = useState<number>(0);
-    const [maxValue, setMaxValue] = useState<string>('');
-
-    const onChangeStartValue = (e: ChangeEvent<HTMLInputElement>) => {
-        setStartValue(+e.currentTarget.value);
+    const incrementFunc =() => {
+        increment();
     }
-    const onChangeMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
-        setMaxValue(e.currentTarget.value);
-    }
-
-    const incrementFunc =(e: MouseEvent<HTMLButtonElement>) => {
-        return increment();
-    }
-    const resetFunction = (e: MouseEvent<HTMLButtonElement>) => {
-        return reset();
-    }
-
-    const setResultValue = (e: MouseEvent<HTMLButtonElement>) => {
-        setResults(startValue)
+    const resetFunction = () => {
+        reset();
     }
 
     return (
-        <div className={s.container}>
-
             <div className={s.rectangularBox}>
                 <div className={s.upperField}>
-                    <div>
-                        <span className={s.letterStyle}>max value: </span>
-                        <input type="number" value={maxValue} onChange={onChangeMaxValue} />
-                    </div>
-                    <div>
-                        <span className={s.letterStyle}>start value: </span>
-                        <input type="number" value={startValue} onChange={onChangeStartValue} />
-                    </div>
-                </div>
-                <div className={s.lowerField}>
-                    <Button name={"Set"} btnOnClickFunc={setResultValue} active={true}/>
-                    {/*counter ? false : true*/}
-                </div>
-            </div>
-            <div className={s.rectangularBox}>
-                <div className={s.upperField}>
-                    <div className={counter < 5? s.counterNumber : s.counterMax}>
+                    <div className={s.counterNumber}>
                         {counter ? counter :
                         <p className={s.pStyle}>enter values and press "Set"</p>}
                     </div>
@@ -62,19 +29,17 @@ const Counter: React.FC<CounterPropsType> = ({counter, increment, reset, setResu
                 <div className={s.lowerField}>
 
                        <Button
+                           count={counter}
                            name={"Inc"}
                            btnOnClickFunc={incrementFunc}
-                           active={true}
                        />
                         <Button
+                            count={counter}
                             name={"Reset"}
                             btnOnClickFunc={resetFunction}
-                            active={true }
                         />
                 </div>
             </div>
-
-        </div>
     )
 };
 
